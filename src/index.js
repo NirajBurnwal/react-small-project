@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { Book } from './Book'
+import { books } from './books'
+import './index.css'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+function BookList() {
+  return (
+    <section>
+      {/* using spread operator */}
+      {books.map((book, index) => <Book key={book.id} {...book} />)}
+      {/* {books.map((item, index) => <Book key={item.id} title={item.title} author={item.author} img={item.img}/>)} */}
+      {/* {books.map((item) => <Book book={item} />)} */}
+    </section>
+  )
+}
+// to use the component in our app we must use render method and it takes two parameters
+// first - component and 2nd html ID where we want to implement
+const root = ReactDOM.createRoot(document.getElementById("root"))
+
 root.render(
   <React.StrictMode>
-    <App />
+    <BookList />
   </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+)
